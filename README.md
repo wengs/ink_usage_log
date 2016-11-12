@@ -38,7 +38,7 @@ password: password
 ### Generate a Report
 - Open home page
 - Click the Generate a Report button
-- Submit the form ater selecting Chart Type, Machine, Start Date, and End Date.
+- Submit the form after selecting Chart Type, Machine, Start Date, and End Date.
 - Switch between table view and chart view using the options located at the top right hand corner.
 - Download data in CSV form on the table view.
 
