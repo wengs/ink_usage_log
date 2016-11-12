@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="pull-left">
+    <%= link_to 'Back', new_dashboard_path, class: "btn btn-lg btn-success" %>
+  </div>
+  <div class="pull-right">
+    <ul class="nav nav-pills">
+      <li class="active"><a href="#dashboard-charts" data-toggle="pill"><i class="fa fa-2x <%= chart_type_icon(@chart_type) %>"></i></a></li>
+      <li a href="#"><a href="#dashboard-table" data-toggle="pill"><i class="fa fa-2x fa-table"></i></a></li>
+    </ul>
+  </div>
+
+  <br class="clear-both" />
+
+  <div class="tab-content">
+    <div id="dashboard-charts" class="tab-pane fade in active">
+      <div id="ink_usages_chart" class="<%= chart_width_class(@chart_type) %> highcharts" data-href=<%= ink_usage_dashboards_path(dashboards: params[:dashboards], format: :json) %> data-table="#ink-usage-summary">
+      </div>
+      <br class="clear-both"/>
+      <br />
+      <div id="wastes_chart" class="<%= chart_width_class(@chart_type) %> highcharts" data-href=<%= waste_dashboards_path(dashboards: params[:dashboards], format: :json) %> data-table="#waste-summary" >
+      </div>
+      <br class="clear-both"/>
+      <br />
+    </div>
+
+    <div id="dashboard-table" class="tab-pane fade">
+      <h3 class="text-center"><%= t(:ink_usage_chart_title, machine: @machine.name)%></h3>
+      <div id="ink-usage-summary"></div>
+
+      <br />
+      <br />
+
+      <h3 class="text-center"><%= t(:waste_chart_title, machine: @machine.name)%></h3>
+      <div id="waste-summary"></div>
+    </div>
+  </div>
+</div>

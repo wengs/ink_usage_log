@@ -1,0 +1,6 @@
+<%= simple_form_for :part_numbers_imports, url: import_part_numbers_admin_part_numbers_path, method: :post do |f| %>
+  <%= f.file_field :file %>
+  <br />
+  <br />
+  <%= f.submit "Import" %>
+<% end %>

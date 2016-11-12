@@ -1,0 +1,15 @@
+<ul id="waste-ink-empty-log-actions">
+  <li>
+    <%= link_to new_waste_path, class: 'btn btn-md btn-success' do %>
+      <i class="fa fa-plus"></i> New <%= Waste.model_name.human %>
+    <% end %>
+  </li>
+  <li>
+    <%= link_to ink_usages_path, class: 'btn btn-md btn-warning' do %>
+      Go to <%= t(:ink_usage_log) %>
+    <% end %>
+  </li>
+</ul>
+<div class="pull-right">
+  <%= link_to 'Dashboard', new_dashboard_path, class: "btn btn-md btn-danger" %>
+</div>

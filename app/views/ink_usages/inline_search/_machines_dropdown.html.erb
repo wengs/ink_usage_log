@@ -1,0 +1,1 @@
+<%= f.select search_param, options_from_collection_for_select(Machine.order(:name), "name", "name", params[:q] && params[:q][search_param] ? params[:q][search_param] : ""),{ include_blank: "- All -" }, { :class => "form-control select" } %>

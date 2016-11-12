@@ -1,0 +1,34 @@
+<div class="col-xs-offset-0 col-md-offset-2 col-lg-offset-3">
+  <div class="col-md-8 col-lg-6 col-xs-12 add-io-green-form-border" id="ink-usage-form-details">
+    <div class="row">
+      <h2>New <%= t(:ink_usage)%></h2>
+    </div>
+    <%= simple_form_for @ink_usage, html: { multipart: true } do |f|%>
+      <div class="row">
+        <%= f.association :user, collection: ink_usage_form_users_collection, include_blank: "--  Select Name --" %>
+      </div>
+      <div class="row">
+        <div class="form-group">
+          <%= render partial: "ink_usages/form_fields/machines", locals: { machines: @all_machines } %>
+        </div>
+      </div>
+      <div class="row">
+        <%= f.association :machine_part_number, collection: [] %>
+      </div>
+      <div class="row">
+        <%= f.input :lot_number %>
+      </div>
+      <div class="row">
+        <%= f.label :exp_code %>
+        <%= f.input :exp_code, as: :date, label: false %>
+      </div>
+      <br />
+      <div class="row actions">
+        <%= f.submit "Submit", class: "btn btn-md btn-success" %>
+        <% if current_user.io_admin %>
+          <%= link_to "Back", root_path, class: "btn btn-md btn-default" %>
+        <% end %>
+      <div>
+    <% end %>
+  </div>
+</div>

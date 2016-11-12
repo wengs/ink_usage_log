@@ -1,0 +1,15 @@
+<ul id="ink-usage-actions">
+  <li>
+    <%= link_to new_ink_usage_path, class: 'btn btn-md btn-primary' do %>
+      <i class="fa fa-plus"></i> New <%= InkUsage.model_name.human %>
+    <% end %>
+  </li>
+  <li>
+    <%= link_to wastes_path, class: 'btn btn-md btn-warning' do %>
+      Go to <%= t(:waste_log) %>
+    <% end %>
+  </li>
+</ul>
+<div class="pull-right">
+  <%= link_to 'Dashboard', new_dashboard_path, class: "btn btn-md btn-danger" %>
+</div>

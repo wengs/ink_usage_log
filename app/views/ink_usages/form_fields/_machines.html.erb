@@ -1,0 +1,2 @@
+<%= label_tag Machine.model_name.human %>
+<%= select_tag Machine.model_name.human, options_from_collection_for_select(machines, 'id', 'name'), { class: "select optional form-control", include_blank: true } %>

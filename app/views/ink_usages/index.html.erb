@@ -1,0 +1,59 @@
+<h2 class="text-center"><%= t(:ink_usage_log) %><h2>
+<div id="ink-usage-log" class="container">
+  <div id="ink-usage-log-actions-list">
+    <%= render partial: "ink_usage_log_actions_list" %>
+  </div>
+  <br class="clear-both"/>
+  <br />
+  <div class="pull-left">
+    <%= paginate @ink_usages %>
+  </div>
+  <%= search_form_for @q do |f| %>
+    <%= f.submit class: 'invisible-button' %>
+    <div class="table-reflow" id="ink-usage-log-table">
+      <table class="table table-bordered table-hover striped-rows">
+        <thead>
+          <tr>
+            <th></th>
+            <th><%= sort_link @q, :created_at, 'Date', default_order: :desc %></th>
+            <th>Time</th>
+            <th><%= sort_link @q, :user_name, InkUsage.human_attribute_name(:user) %></th>
+            <th><%= sort_link @q, :machine_part_number_machine_name, Machine.model_name.human %></th>
+            <th><%= sort_link @q, :machine_part_number_color_name, Color.model_name.human %></th>
+            <th><%= sort_link @q, :machine_part_number_part_number_number, PartNumber.model_name.human %></th>
+            <th><%= sort_link @q, :lot_number, InkUsage.human_attribute_name(:lot_number) %></th>
+            <th><%= sort_link @q, :exp_code %></th>
+          </tr>
+        </thead>
+
+        <thead class="search-filter">
+          <th><%= link_to 'Reset', ink_usages_path, class: 'btn btn-xs btn-default reset' %></th>
+          <th><div id="created-on"><%= f.search_field :created_on, placeholder: 'mm/dd/yyyy', class: 'form-control', value: params[:q] && params[:q][:created_on] ? only_display_date(params[:q][:created_on]) : "" %></div></th>
+          <th></th>
+          <th><%= f.search_field :user_name_cont, placeholder: 'Filter', class: 'form-control' %></th>
+          <th><%= render partial: "ink_usages/inline_search/machines_dropdown", locals: { f: f, search_param: :machine_part_number_machine_name_eq } %></th>
+          <th><%= f.search_field :machine_part_number_part_number_color_name_cont, placeholder: 'Filter', class: 'form-control' %></th>
+          <th><%= f.search_field :machine_part_number_part_number_number_cont, placeholder: 'Filter', class: 'form-control' %></th>
+          <th><%= f.search_field :lot_number_cont, placeholder: 'Filter', class: 'form-control' %></th>
+          <th><%= f.search_field :exp_code_since, placeholder: 'mm/dd/yyyy', class: "form-control", value: params[:q] && params[:q][:exp_code_since] ? only_display_date(params[:q][:exp_code_since]) : "" %></th>
+        </thead>
+        <tbody>
+          <% @ink_usages.each do |ink_usage| %>
+            <tr>
+              <td></td>
+              <td class="text-center"><%= only_display_date(ink_usage.created_at) %></td>
+              <td class="text-center"><%= only_display_time(ink_usage.created_at)%></td>
+              <td class="text-center"><%= ink_usage.user && ink_usage.user.name %></td>
+              <td class="text-center"><%= ink_usage.machine_part_number.machine.name %></td>
+              <td class="text-center"><%= ink_usage.machine_part_number.part_number.color && ink_usage.machine_part_number.part_number.color.name %></td>
+              <td class="text-center"><%= ink_usage.machine_part_number.part_number.number %></td>
+              <td class="text-center"><%= ink_usage.lot_number %></td>
+              <td class="text-center"><%= only_display_date(ink_usage.exp_code) %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% end %>
+  <%= paginate @ink_usages %>
+</div>

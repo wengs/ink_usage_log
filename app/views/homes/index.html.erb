@@ -1,0 +1,43 @@
+<div id="root-actions-list" class="text-center">
+  <ul id="home-actions">
+    <li>
+      <%= link_to new_ink_usage_path, class: 'btn btn-lg btn-primary' do %>
+        <i class="fa fa-plus"></i> New <%= InkUsage.model_name.human %>
+      <% end %>
+    </li>
+    <li>
+      <%= link_to new_waste_path, class: 'btn btn-lg btn-success' do %>
+        <i class="fa fa-plus"></i> New <%= Waste.model_name.human %>
+      <% end %>
+    </li>
+    <% if current_user.io_admin %>
+      <br />
+      <br />
+      <li>
+        <%= link_to ink_usages_path, class: 'btn btn-lg btn-warning' do %>
+          <i class="fa fa-table"></i> <%= t(:ink_usage_log)%>
+        <% end %>
+      </li>
+
+      <li>
+        <%= link_to wastes_path, class: 'btn btn-lg btn-warning' do %>
+          <i class="fa fa-table"></i> <%= t(:waste_log) %>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to new_dashboard_path, class: "btn btn-lg btn-warning" do %>
+          <i class="fa fa-file-text-o"></i> <%= t(:generate_new_dashboard) %>
+        <% end %>
+      </li>
+    <% end %>
+    <% if current_user.superadmin %>
+      <br />
+      <br />
+      <li>
+        <%= link_to admin_root_path, class: 'btn btn-lg btn-danger' do %>
+          <i class="fa fa-user"></i> <%= t(:admin_page) %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</div>

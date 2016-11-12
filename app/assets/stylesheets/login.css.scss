@@ -1,0 +1,99 @@
+.vertical-center {
+  min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+  min-height: 100vh; /* These two lines are counted as one :-)       */
+
+  display: flex;
+  align-items: center;
+}
+
+.alert-login-message {
+  height: auto;
+  width: 375px;
+  padding-top: 5px!important;
+  padding-bottom: 5px!important;
+}
+
+#close-login-message {
+  font-size: 16px;
+}
+
+.outer-login {
+  margin: auto;
+  vertical-align: middle;
+  text-align: center;
+}
+
+fieldset.login {
+  background-color: #ffffff;
+  border:1px solid #8ec640;
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  border-radius: 8px;
+  text-align:center;
+  color: #000000;
+  width: 375px;
+  height: 386px;
+  vertical-align: middle;
+  margin: auto;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+fieldset.login form {
+  width: 355px;
+}
+
+@mixin io_font {
+  font-family: "Trebuchet MS", verdana, arial, helvetica, sans-serif;
+}
+
+.submit_margins {margin:25px 0 0 auto;}
+
+.login-email, .login-password {
+  @include io_font;
+  font-size: 18px;
+  border:1px solid #999999;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
+  margin-bottom: 16px;
+  height: 40px;
+  width:354px;
+  text-align: center;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.login-button {
+  border:1px solid #8ec640;
+  background-color:#8ec640;
+  color:#ffffff;
+  font-size:18px;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
+  height:46px;
+  width:354px;
+  text-align: center;
+  padding-left: 0;
+  padding-right: 0;
+  @include io_font;
+}
+
+.login-button:hover {
+  background-color:#79a839;
+  cursor:pointer;
+}
+
+.logo {
+  width:66%;
+  text-align:center;
+  margin-top:15px;
+  margin-bottom: 30px;
+}
+
+.copyright {
+  width:355px;
+  padding-top: 16px;
+  @include io_font;
+}

@@ -1,0 +1,38 @@
+select.date.form-control {
+  display: inline-block;
+  width: 32.5%;
+}
+
+select.select.form-control {
+  width: 98.5%;
+}
+
+input.string.form-control {
+  width: 98.5%;
+}
+
+#created-on {
+  position: relative;
+}
+
+.add-io-green-form-border {
+  padding: 40px;
+  border: 2px solid #7FB239;
+  border-radius: 10px;
+}
+
+ul#ink-usage-actions {
+  list-style: none;
+  padding-left: 0px;
+}
+
+ul#ink-usage-actions li {
+  padding-left: 0;
+  padding-right: 5px;
+  float: left;
+}
+
+thead.search-filter tr th select {
+  height: 95%;
+}
+

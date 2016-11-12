@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>InkUsageWasteApp</title>
+  <%= stylesheet_link_tag 'application', media: 'all' %>
+  <%= stylesheet_link_tag params[:controller] %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <% if current_user %>
+    <header class="topnavbar-wrapper">
+      <%= render partial: "layouts/partials/topnavbar" %>
+    </header>
+  <% end %>
+  <%= render partial: "layouts/partials/bootstrap_alerts" %>
+  <%= yield %>
+  <%= javascript_include_tag 'application', params[:controller] %>
+</body>
+</html>

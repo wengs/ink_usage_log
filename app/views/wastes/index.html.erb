@@ -1,0 +1,50 @@
+<h2 class="text-center"><%= t(:waste_log) %><h2>
+<div id="waste-ink-empty-log" class="container">
+  <div id="waste-ink-empty-log-actions-list">
+    <%= render partial: "waste_ink_empty_log_actions" %>
+  </div>
+  <br class="clear-both"/>
+  <br />
+  <div class="pull-left">
+    <%= paginate @wastes%>
+  </div>
+  <%= search_form_for @q do |f| %>
+    <%= f.submit class: 'invisible-button' %>
+    <div class="table-responsive" id="waste-ink-empty-log-table">
+      <table class="table table-bordered table-hover striped-rows">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Operator</th>
+            <th><%= Machine.model_name.human %></th>
+            <th><%= Waste.human_attribute_name(:level) %></th>
+          </tr>
+        </thead>
+
+        <thead class="search-filter">
+          <th><%= link_to 'Reset', ink_usages_path, class: 'btn btn-xs btn-default reset' %></th>
+          <th><div id="created-on"><%= f.search_field :created_on, placeholder: 'mm/dd/yyyy', class: 'form-control', value: params[:q] && params[:q][:created_on] ? only_display_date(params[:q][:created_on]) : "" %></div></th>
+          <th></th>
+          <th><%= f.search_field :user_name_cont, placeholder: 'Filter', class: 'form-control' %></th>
+          <th><%= f.select :machine_name_cont, options_from_collection_for_select(Machine.all, "name", "name", params[:q] && params[:q][:machine_name_cont] ? params[:q][:machine_name_cont] : ""),{ include_blank: "- All -" }, { :class => "form-control select" } %></th>
+          <th><%= f.search_field :level_eq, placeholder: 'Filter', class: "form-control" %></th>
+        </thead>
+        <tbody>
+          <% @wastes.each do |waste| %>
+            <tr>
+              <td></td>
+              <td class="text-center"><%= only_display_date(waste.created_at) %></td>
+              <td class="text-center"><%= only_display_time(waste.created_at)%></td>
+              <td class="text-center"><%= waste.user.name %></td>
+              <td class="text-center"><%= waste.machine.name %></td>
+              <td class="text-center"><%= waste.level %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% end %>
+  <%= paginate @wastes %>
+</div>
