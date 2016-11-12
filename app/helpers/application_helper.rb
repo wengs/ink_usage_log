@@ -15,6 +15,6 @@ module ApplicationHelper
   end
 
   def ink_usage_form_users_collection
-     User.for_form_selection.order(name: :asc).map { |user| [user.name, user.id] }
+    User.for_form_selection.order(name: :asc).map { |user| [user.name, user.id] }
   end
 end
