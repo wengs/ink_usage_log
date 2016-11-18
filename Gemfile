@@ -37,6 +37,7 @@ gem "font-awesome-rails"
 gem 'pry'
 gem 'roo'  #csv/xlsx import
 gem 'highcharts-rails'
+gem 'react-rails'
 
 group :development do
   gem 'foreman'

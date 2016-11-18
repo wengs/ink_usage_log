@@ -1,2 +1,0 @@
-module InkUsageDashboardsHelper
-end

@@ -25,7 +25,7 @@ end
   user = User.where(role_id: Role.where(name: 'operator').first.id).first
   machine = Machine.first
   machine_part_number = machine.machine_part_numbers.order("RAND()").first
-  ink_usage = InkUsage.new(lot_number: n, user_id: user.id, machine_part_number_id: machine_part_number.id)
+  ink_usage = InkUsage.new(lot_number: n, user_id: user.id, machine_part_number_id: machine_part_number.id, exp_code: 100.days.from_now)
   ink_usage.created_at = n.days.ago
   ink_usage.updated_at = ink_usage.created_at
   ink_usage.save!

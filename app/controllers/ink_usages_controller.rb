@@ -7,6 +7,11 @@ class InkUsagesController < ApplicationController
     @ink_usages = @q.result
     search_date_range
     @ink_usages = @ink_usages.order(created_at: :desc).page(params[:page]).per(50)
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @ink_usages.as_json }
+    end
   end
 
   def new

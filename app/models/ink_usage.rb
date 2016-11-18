@@ -4,6 +4,7 @@ class InkUsage < ActiveRecord::Base
   belongs_to :user
   belongs_to :machine_part_number
   delegate :part_number, to: :machine_part_number # Delegate exposes part_number from machine_part_number
+  delegate :machine, to: :machine_part_number
 
   validates :part_number, :lot_number, :user, presence: true
 
@@ -23,6 +24,19 @@ class InkUsage < ActiveRecord::Base
   scope :created_between, lambda { |start_date, end_date|
     where(created_at: start_date.beginning_of_day..end_date.end_of_day)
   }
+
+  def as_json(options={})
+    super(only: [:id, :created_at, :lot_number, :exp_code],
+      include: {
+        part_number: {
+          only: [:number],
+          include: {color: { only: [:name] }}
+        },
+        machine: { only: [:name] },
+        user: { only: [:name] }
+      }
+    )
+  end
 
   def self.group_by_part_number
     self.group(:part_number_id)
